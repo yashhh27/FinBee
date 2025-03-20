@@ -1,0 +1,19 @@
+# Ignore macOS system files
+.DS_Store
+.Trash/
+Library/
+.vscode/
+.ollama/
+.ssh/
+.mysql_history
+.zsh_history
+
+# Ignore Virtual Environment
+venv/
+env/
+
+# Ignore PyCache
+__pycache__/
+*.pyc
+*.pyo
+
