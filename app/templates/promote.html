@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}Promote User to Admin{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Promote User to Admin</h2>
+
+<form method="POST" action="/auth/promote">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Promote to Admin</button>
+</form>
+
+{% if message %}
+<div class="alert alert-info mt-3">{{ message }}</div>
+{% endif %}
+{% endblock %}
