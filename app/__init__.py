@@ -2,6 +2,8 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 from .extensions import mongo  # ✅ Use shared instance
 from .investment_routes import investment  # ✅ Blueprint
+from .file_routes import file_bp
+
 
 jwt = JWTManager()  # ✅ Initialize JWT here
 
@@ -28,5 +30,5 @@ def create_app():
     app.register_blueprint(main)
     app.register_blueprint(auth, url_prefix="/auth")
     app.register_blueprint(investment, url_prefix="/investment")
-
+    app.register_blueprint(file_bp)
     return app

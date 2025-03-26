@@ -19,3 +19,9 @@ investment_plan_schema = {
     "risk_level": str,
     "description": str,
 }
+
+def user_schema(user):
+    return {
+        "username": user["username"],
+        "role": user.get("role", "user")
+    }

@@ -86,3 +86,28 @@ def unsubscribe_plan():
         return jsonify(message="Subscription not found"), 404
 
     return jsonify(message="Unsubscribed from plan successfully"), 200
+
+@investment.route('/plan/<plan_name>', methods=['PUT'])
+@jwt_required()
+def update_investment_plan(plan_name):
+    data = request.get_json()
+
+    update_fields = {}
+    allowed_fields = ["amount", "duration_months", "expected_return", "risk_level", "description"]
+
+    for field in allowed_fields:
+        if field in data:
+            update_fields[field] = data[field]
+
+    if not update_fields:
+        return jsonify(message="No valid fields to update"), 400
+
+    result = mongo.db.investment_plans.update_one(
+        {"plan_name": plan_name},
+        {"$set": update_fields}
+    )
+
+    if result.matched_count == 0:
+        return jsonify(message="Investment plan not found"), 404
+
+    return jsonify(message="Investment plan updated successfully"), 200

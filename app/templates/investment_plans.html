@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}Investment Plans{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Available Investment Plans</h2>
+
+<div class="row">
+    {% for plan in plans %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ plan.plan_name }}</h5>
+                <p class="card-text">
+                    <strong>Amount:</strong> ${{ plan.amount }}<br>
+                    <strong>Duration:</strong> {{ plan.duration_months }} months<br>
+                    <strong>Expected Return:</strong> {{ plan.expected_return }}%<br>
+                    <strong>Risk Level:</strong> {{ plan.risk_level }}<br>
+                    <strong>Description:</strong> {{ plan.description }}
+                </p>
+                <form method="post" action="/investment/plan/subscribe">
+                    <input type="hidden" name="plan_name" value="{{ plan.plan_name }}">
+                    <input type="hidden" name="amount" value="{{ plan.amount }}">
+                    <button type="submit" class="btn btn-success w-100">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
