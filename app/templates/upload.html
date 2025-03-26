@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+<<<<<<< HEAD
 
 {% block title %}Upload File{% endblock %}
 
@@ -18,4 +19,18 @@
 </form>
 
 <a href="/investment/my-plans" class="btn btn-secondary mt-3">Back to My Plans</a>
+=======
+{% block title %}Upload File{% endblock %}
+{% block content %}
+  <h2>Upload a File</h2>
+  {% if message %}
+    <div class="alert alert-info">{{ message }}</div>
+  {% endif %}
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <input class="form-control" type="file" name="file" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Upload</button>
+  </form>
+>>>>>>> ff07861 (feat: Add file upload feature and UI updates)
 {% endblock %}
